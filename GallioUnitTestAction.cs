@@ -35,12 +35,6 @@ namespace Inedo.BuildMasterExtensions.Gallio
         /// </summary>
         [Persistent]
         public string TestFile { get; set; }
-        /// <summary>
-        /// This property is obsolete. Use the configurer instead.
-        /// </summary>
-        [Persistent]
-        [Obsolete("Use the extension configurer instead.", true)]
-        public string ExecutablePath { get; set; }
 
         /// <summary>
         /// Runs a unit test against the target specified in the action.
@@ -56,15 +50,15 @@ namespace Inedo.BuildMasterExtensions.Gallio
                 return;
             }
 
-            var tempReportFileName = Util.Path2.Combine(this.RemoteConfiguration.TempDirectory, "gallio-report.xml");
+            var tempReportFileName = Util.Path2.Combine(this.Context.TempDirectory, "gallio-report.xml");
             try
             {
-                var testFilePath = Util.Path2.Combine(this.RemoteConfiguration.SourceDirectory, this.TestFile);
+                var testFilePath = Util.Path2.Combine(this.Context.SourceDirectory, this.TestFile);
 
-                int res = int.Parse(this.ExecuteCommandLine(
+                int res = this.ExecuteCommandLine(
                     configurer.GallioEchoPath,
                     string.Format("\"{0}\" /verbosity:Verbose /report-type:Xml /report-directory:\"{1}\" /report-name-format:\"{2}\"", testFilePath, Path.GetDirectoryName(tempReportFileName), Path.GetFileNameWithoutExtension(tempReportFileName)),
-                    this.RemoteConfiguration.SourceDirectory));
+                    this.Context.SourceDirectory);
 
                 if (res != 0)
                 {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
+using System.Linq;
 using Inedo.BuildMaster;
 using Inedo.BuildMaster.Extensibility.Configurers.Extension;
 using Inedo.BuildMaster.Web;
-using Inedo.Linq;
 using Microsoft.Win32;
 
 namespace Inedo.BuildMasterExtensions.Gallio
