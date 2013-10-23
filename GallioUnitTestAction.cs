@@ -11,10 +11,10 @@ namespace Inedo.BuildMasterExtensions.Gallio
     /// <summary>
     /// Represents an action that executes the Gallio test runner.
     /// </summary>
+    [Tag(Tags.UnitTests)]
     [ActionProperties(
         "Execute Gallio Test Runner",
-        "Runs a series of tests using the Gallio test runner.",
-        "Testing")]
+        "Runs a series of tests using the Gallio test runner.")]
     [CustomEditor(typeof(GallioUnitTestActionEditor))]
     public sealed class GallioUnitTestAction : UnitTestActionBase
     {
